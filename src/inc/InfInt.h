@@ -1,4 +1,5 @@
-nfInt - Arbitrary-Precision Integer Arithmetic Library
+/*
+InfInt - Arbitrary-Precision Integer Arithmetic Library
  * Copyright (C) 2013 Sercan Tutar
   *
    * This library is free software; you can redistribute it and/or modify it under
