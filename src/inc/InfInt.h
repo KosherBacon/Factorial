@@ -190,67 +190,67 @@ public:
     char digitAt(size_t i) const; // throw
     size_t numberOfDigits() const;
 
-                                                                                                                                                                                                                                                                                                     /* size in bytes */
-                                                                                                                                                                                                                                                                                                         size_t size() const;
+    /* size in bytes */
+    size_t size() const;
 
-                                                                                                                                                                                                                                                                                                             /* string conversion */
-                                                                                                                                                                                                                                                                                                                 std::string toString() const;
+    /* string conversion */
+    std::string toString() const;
 
-                                                                                                                                                                                                                                                                                                                     /* conversion to primitive types */
-                                                                                                                                                                                                                                                                                                                         int toInt() const; // throw
-                                                                                                                                                                                                                                                                                                                             long toLong() const; // throw
-                                                                                                                                                                                                                                                                                                                                 long long toLongLong() const; // throw
-                                                                                                                                                                                                                                                                                                                                     unsigned int toUnsignedInt() const; // throw
-                                                                                                                                                                                                                                                                                                                                         unsigned long toUnsignedLong() const; // throw
-                                                                                                                                                                                                                                                                                                                                             unsigned long long toUnsignedLongLong() const; // throw
+    /* conversion to primitive types */
+    int toInt() const; // throw
+    long toLong() const; // throw
+    long long toLongLong() const; // throw
+    unsigned int toUnsignedInt() const; // throw
+    unsigned long toUnsignedLong() const; // throw
+    unsigned long long toUnsignedLongLong() const; // throw
 
-                                                                                                                                                                                                                                                                                                                                             private:
-                                                                                                                                                                                                                                                                                                                                                 static ELEM_TYPE dInR(const InfInt& R, const InfInt& D);
-                                                                                                                                                                                                                                                                                                                                                     static void multiplyByDigit(ELEM_TYPE factor, std::vector<ELEM_TYPE>& val);
+private:
+    static ELEM_TYPE dInR(const InfInt& R, const InfInt& D);
+    static void multiplyByDigit(ELEM_TYPE factor, std::vector<ELEM_TYPE>& val);
 
-                                                                                                                                                                                                                                                                                                                                                         void correct(bool justCheckLeadingZeros = false, bool hasValidSign = false);
-                                                                                                                                                                                                                                                                                                                                                             void fromString(const std::string& s);
-                                                                                                                                                                                                                                                                                                                                                                 void optimizeSqrtSearchBounds(InfInt& lo, InfInt& hi) const;
-                                                                                                                                                                                                                                                                                                                                                                     void truncateToBase();
-                                                                                                                                                                                                                                                                                                                                                                         bool equalizeSigns();
-                                                                                                                                                                                                                                                                                                                                                                             void removeLeadingZeros();
+    void correct(bool justCheckLeadingZeros = false, bool hasValidSign = false);
+    void fromString(const std::string& s);
+    void optimizeSqrtSearchBounds(InfInt& lo, InfInt& hi) const;
+    void truncateToBase();
+    bool equalizeSigns();
+    void removeLeadingZeros();
 
-                                                                                                                                                                                                                                                                                                                                                                                 std::vector<ELEM_TYPE> val; // number with base FACTOR
-                                                                                                                                                                                                                                                                                                                                                                                     bool pos; // true if number is positive
-                                                                                                                                                                                                                                                                                                                                                                                     };
+    std::vector<ELEM_TYPE> val; // number with base FACTOR
+    bool pos; // true if number is positive
+};
 
-                                                                                                                                                                                                                                                                                                                                                                                     const InfInt InfInt::zero = 0;
-                                                                                                                                                                                                                                                                                                                                                                                     const InfInt InfInt::one = 1;
-                                                                                                                                                                                                                                                                                                                                                                                     const InfInt InfInt::two = 2;
+const InfInt InfInt::zero = 0;
+const InfInt InfInt::one = 1;
+const InfInt InfInt::two = 2;
 
-                                                                                                                                                                                                                                                                                                                                                                                     inline InfInt::InfInt() : pos(true)
-                                                                                                                                                                                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                                                                                                                                                                                         val.push_back((ELEM_TYPE) 0);
-                                                                                                                                                                                                                                                                                                                                                                                         }
+inline InfInt::InfInt() : pos(true)
+{
+    val.push_back((ELEM_TYPE) 0);
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                         inline InfInt::InfInt(const char* c)
-                                                                                                                                                                                                                                                                                                                                                                                         {
-                                                                                                                                                                                                                                                                                                                                                                                             fromString(c);
-                                                                                                                                                                                                                                                                                                                                                                                             }
+inline InfInt::InfInt(const char* c)
+{
+    fromString(c);
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                             inline InfInt::InfInt(const std::string& s)
-                                                                                                                                                                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                                                                                                                                                                 fromString(s);
-                                                                                                                                                                                                                                                                                                                                                                                                 }
+inline InfInt::InfInt(const std::string& s)
+{
+    fromString(s);
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                 inline InfInt::InfInt(int l) : pos(l >= 0)
-                                                                                                                                                                                                                                                                                                                                                                                                 {
-                                                                                                                                                                                                                                                                                                                                                                                                     if (!pos)
-                                                                                                                                                                                                                                                                                                                                                                                                         {
-                                                                                                                                                                                                                                                                                                                                                                                                                 l = -l;
-                                                                                                                                                                                                                                                                                                                                                                                                                     }
-                                                                                                                                                                                                                                                                                                                                                                                                                         do
-                                                                                                                                                                                                                                                                                                                                                                                                                             {
-                                                                                                                                                                                                                                                                                                                                                                                                                                     div_t dt = div(l, BASE);
-                                                                                                                                                                                                                                                                                                                                                                                                                                             val.push_back((ELEM_TYPE) dt.rem);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                     l = dt.quot;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                         } while (l > 0);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                         }
+inline InfInt::InfInt(int l) : pos(l >= 0)
+{
+    if (!pos)
+    {
+        l = -l;
+    }
+    do
+    {
+        div_t dt = div(l, BASE);
+        val.push_back((ELEM_TYPE) dt.rem);
+        l = dt.quot;
+    } while (l > 0);
+}
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                          inline InfInt::InfInt(long l) : pos(l >= 0)
                                                                                                                                                                                                                                                                                                                                                                                                                                                          {
